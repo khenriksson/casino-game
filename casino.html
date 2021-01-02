@@ -93,6 +93,7 @@
   </head>
   <body>
     <script type="text/javascript">
+      var players = []
       var doubleOrNothing = 1
       var randomShot = function (attr, b, don, reset) {
         if (reset) {
@@ -114,8 +115,24 @@
         var b = document.querySelector('#b').value;
         document.querySelector('#drinkResult').innerHTML = randomShot(0, +b, document.querySelector('#don').checked, false);
       }
+
+      var addPlayer = function() {
+        var player = document.querySelector('#player').value;
+        console.log(player)
+        players.push({
+          name: player,
+          drink: 0
+        })
+        console.log(players)
+        players.forEach( player => document.querySelector('#players').innerHTML = player.name )
+      }
     </script>
     <h1>The Casino Game</h1>
+    <label>
+Add players
+      <input type="text" name="" min="0" max="6" id="player" value="testing" style="padding: 8px 12px;">
+    </label>
+    <button type="button" name="button" onclick="addPlayer()">Add player</button>
     <br><br>
     <label>
       Your guess between 0 and x:
@@ -134,5 +151,7 @@
     <h2 id="drinkResult">
       Start by pressing Roll the dice
     </h2>
+    <div id="players">
+    </div>
   </body>
 </html>
